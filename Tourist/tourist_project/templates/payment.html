@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="../static/asset/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="../static/asset/css/style.css">
+
+    <script src="https://kit.fontawesome.com/e8b7ffc3fd.js" crossorigin="anonymous"></script>
+
+    <title>Payment Details</title>
+</head>
+<body>
+
+    <!-- Navbar And Hero Section Starts -->
+    <div style="margin-bottom: 9%;">
+        <nav class="head-nav nav-collapse fixed-top">
+            <div class="logo"><i class="fa-solid fa-earth-americas"></i> Gothrill</div>
+            <ul>
+                <li><a href="/allpackages">Packages</a></li>
+                <li><a href="/myjourney">MyJourney</a></li>
+                <li>
+                    <a href="/logout" role="button" id="register">Logout</a>
+                </li>
+            </ul> 
+        </nav>
+    </div>
+
+
+    <!-- Payment Starts -->
+    <div class="container-xxl py-5">
+        <div class="container">
+            <div class="text-center">
+                <h6 class="section-title bg-white text-center px-3">Payment</h6>
+                <p class="section-heading mb-5">Booking & Payment Gateway</p>
+            </div>
+            <div class="row g-4 justify-content-center">
+
+                
+                <div class="col-md-4 wow fadeInUp" data-wow-delay="0.1s">
+                    <h3 class="mb-3 text-primary" style="font-family: Arial; font-weight: bolder; text-align: center;"><u>Tour Information</u></h3>
+                    {% for x in booking %}
+                    <div class="package-item">
+                        <div class="overflow-hidden">
+                            <img class="img-fluid" src="{{x.pimage.url}}" alt="no-image">
+                        </div>
+                        <div class="d-flex border-bottom">
+                            <small class="flex-fill text-center border-end py-2"><i class="fa fa-map-marker-alt text-primary me-2"></i>{{x.pname}}</small>
+                            <small class="flex-fill text-center border-end py-2"><i class="fa fa-calendar-alt text-primary me-2"></i>{{x.days}} days</small>
+                            <small class="flex-fill text-center py-2"><i class="fa fa-user text-primary me-2"></i>{{x.person}} Person</small>
+                        </div>
+                        <div class="text-center p-4">
+                            <h3 class="mb-0">${{x.price}}.00</h3>
+                            <p>{{x.description}}</p>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+
+
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <h3 class="mb-3 text-primary" style="font-family: Arial; font-weight: bolder; text-align: center;"><u>Booking Information</u></h3>
+
+                    <form action="#" method="POST">
+                        {% csrf_token %}
+                        <!-- Name label -->
+                        <div class="mb-3">
+                            <input type="text" name="bname" class="form-control" placeholder="Your Name" required>
+                        </div>
+
+                        <!-- email label -->
+                        <div class="mb-3">
+                            <input type="text" name="bemail" class="form-control" placeholder="Your Email" required>
+                        </div>
+
+                        <!-- Name label -->
+                        <div class="mb-3">
+                            <input type="number" name="bnum" class="form-control" placeholder="Contact Number" required>
+                        </div>
+
+                        <!-- Name label -->
+                        <div class="mb-3">
+                            <input type="date" name="bdate" class="form-control" placeholder="Enter Date" required>
+                        </div>
+
+                        <!-- Name label -->
+                        <div class="mb-3">
+                            <textarea name="bmsg" class="form-control" placeholder="Special Request" rows="3"></textarea required>
+                        </div>
+
+                        <div class="mb-2 text-center">
+                            <input type="submit" class="btn btn-success" value="Make Payment">
+                            <a href="/allpackages" class="btn btn-danger">Cancel Booking</a>
+                        </div>
+                    </form>
+            
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+    <!-- Payment Ends -->
+    
+</body>
+</html>

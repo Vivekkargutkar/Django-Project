@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="../static/asset/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="../static/asset/css/style.css">
+
+    <script src="https://kit.fontawesome.com/e8b7ffc3fd.js" crossorigin="anonymous"></script>
+
+    <title>Register</title>
+</head>
+<body>
+
+    <!-- Navbar And Hero Section Starts -->
+    <div style="margin-bottom: 7%;">
+        <nav class="head-nav nav-collapse fixed-top">
+            <div class="logo"><i class="fa-solid fa-earth-americas"></i> Gothrill</div>
+            <ul>
+                <li><a href="/home">Home</a></li>
+                <li><a href="/packages">Packages</a></li>
+                <li><a href="/contact">Contact</a></li>
+                <li>
+                    <a href="/login" role="button" id="register">Sign in</a>
+                </li>
+            </ul> 
+        </nav>
+    </div>
+
+    
+
+    <!-- Register Form starts -->
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-4 shadow mx-auto p-4 mt-5">
+                <h1>Register</h1>
+                {% if errmsg %}
+                <div class="alert alert-danger">
+                  {{errmsg}}
+                </div>
+                {% endif %}
+                <form method="post" action="/register">
+                  {% csrf_token %}
+                  <div class="mb-3">
+                    <label for="Input1" class="form-label">Username</label>
+                    <input type="email" class="form-control" id="Input1" placeholder="Enter Username" name="uname" >
+                  </div>
+                  <div class="mb-3">
+                    <label for="Input2" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="Input2" placeholder="Enter password" name="upass" >
+                  </div>
+                  {% if passerr %}
+                  <div class="alert alert-danger">
+                    {{passerr}}
+                  </div>
+                  {% endif %}
+                  <div class="mb-3">
+                    <label for="Input3" class="form-label">Confirm Password</label>
+                    <input type="password" class="form-control" id="Input3" placeholder="Confirm Password" name="ucpass" >
+                  </div>
+                  <div class="mb-3">
+                    <input type="submit" class="btn btn-danger" value="submit">&nbsp;Already Registered?<a href="/login" style="text-decoration: none; margin-left: 10px;">Login</a>
+                  </div>
+                  {% if success %}
+                  <div class="alert alert-success">
+                    {{success}}
+                  </div>
+                  {% endif %}
+                </form>  
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
