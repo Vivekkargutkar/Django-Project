@@ -63,8 +63,10 @@ def payment_view(request, bid):
             number = request.POST['bnum']
             dat = request.POST['bdate']
             msge = request.POST['bmsg']
+            add = request.POST['bAdd']
+            file = request.FILES.get('bfiles', None)
 
-            data = booking.objects.create(name=name, email=mail, contact=number, date=dat, msg=msge, uid=u[0], pid=p[0])
+            data = booking.objects.create(name=name, email=mail, contact=number, date=dat, msg=msge, uid=u[0], pid=p[0], address=add, file=file)
             data.save()
             return redirect('/makepayment')
 
@@ -83,13 +85,15 @@ def makepayment_view(request):
     # x = book.pid.price
     print(s)
     
+    tfare = s
     client = razorpay.Client(auth=("rzp_test_RCOnqF2q5cJIsa", "AQeW0Weqw5daVhiwV6yQXSrR"))
-    data = { "amount": s*100, "currency": "INR"}
+    data = { "amount": s*100, "currency": "INR" }
     payment = client.order.create(data=data)
     print(payment)
     context = {}
     context['data']=payment
     context['uname']=uname
+    context['totalfare'] = tfare
 
     return render(request, 'pay.html',context)
 

@@ -26,6 +26,12 @@ class booking(models.Model):
     email = models.CharField(max_length=50)
     contact = models.IntegerField()
     date = models.DateField()
+    address = models.CharField(max_length=300 ,null=True, blank=True)
     msg = models.CharField(max_length=300)
     uid = models.ForeignKey(User,on_delete=models.CASCADE,db_column="uid",null=True)
     pid = models.ForeignKey(places,on_delete=models.CASCADE,db_column="pid",null=True)
+
+    file = models.FileField(upload_to='media2/', null=True, blank=True)
+
+    def __str__(self):
+        return self.name

@@ -52,7 +52,7 @@
                             <small class="flex-fill text-center py-2"><i class="fa fa-user text-primary me-2"></i>{{x.person}} Person</small>
                         </div>
                         <div class="text-center p-4">
-                            <h3 class="mb-0">${{x.price}}.00</h3>
+                            <h3 class="mb-0">&#8377;{{x.price}}.00</h3>
                             <p>{{x.description}}</p>
                         </div>
                     </div>
@@ -61,31 +61,43 @@
 
 
                 <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <h3 class="mb-3 text-primary" style="font-family: Arial; font-weight: bolder; text-align: center;"><u>Booking Information</u></h3>
+                    <h3 class="mb-3 text-primary" style="font-family: Arial; font-weight: bolder; text-align: center;"><u>Additional Information</u></h3>
 
-                    <form action="#" method="POST">
+                    <form action="#" method="POST" enctype="multipart/form-data">
                         {% csrf_token %}
                         <!-- Name label -->
                         <div class="mb-3">
-                            <input type="text" name="bname" class="form-control" placeholder="Your Name" required>
+                            <input type="text" name="bname" class="form-control" placeholder="Enter Name" required>
                         </div>
 
                         <!-- email label -->
                         <div class="mb-3">
-                            <input type="text" name="bemail" class="form-control" placeholder="Your Email" required>
+                            <input type="text" name="bemail" class="form-control" placeholder="Enter Email-ID" required>
                         </div>
 
-                        <!-- Name label -->
+                        <!-- number label -->
                         <div class="mb-3">
                             <input type="number" name="bnum" class="form-control" placeholder="Contact Number" required>
                         </div>
 
-                        <!-- Name label -->
+                        <!-- date label -->
                         <div class="mb-3">
                             <input type="date" name="bdate" class="form-control" placeholder="Enter Date" required>
                         </div>
 
-                        <!-- Name label -->
+                        <!-- Address label -->
+                        <div class="mb-3">
+                            <textarea name="bAdd" class="form-control" placeholder="Enter Address" rows="3"></textarea required>
+                        </div>
+
+                        <!-- for file -->
+                        <div class="mb-3">
+                            <label for="" style="margin-bottom: 5px; margin-left: 10px;">Upload all person documents to be needed :</label>
+                            <input type="file" name="bfiles" class="form-control" placeholder="" required>
+                        </div>  
+
+
+                        <!-- request label -->
                         <div class="mb-3">
                             <textarea name="bmsg" class="form-control" placeholder="Special Request" rows="3"></textarea required>
                         </div>
